@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Akolade Shorinola Developer & Digital Strategist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0F1117;
+    --panel:#171B24;
+    --panel-2:#1E2330;
+    --paper:#EDEFF4;
+    --amber:#E8A33D;
+    --indigo:#5B6EF5;
+    --slate:#6B7280;
+    --line:#2A2F3C;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--ink);
+    color:var(--paper);
+    font-family:'Inter', sans-serif;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.display{ font-family:'Space Grotesk', sans-serif; }
+  .mono{ font-family:'JetBrains Mono', monospace; }
+  a{ color:inherit; text-decoration:none; }
+
+  ::selection{ background:var(--amber); color:var(--ink); }
+
+  nav{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    display:flex; justify-content:space-between; align-items:center;
+    padding:20px 6vw;
+    background:rgba(15,17,23,0.85);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .logo{ font-weight:700; font-size:1.1rem; letter-spacing:0.5px; }
+  .logo span{ color:var(--amber); }
+  .nav-links{ display:flex; gap:32px; font-size:0.92rem; color:var(--slate); }
+  .nav-links a:hover{ color:var(--paper); }
+  .nav-toggle{ display:none; flex-direction:column; gap:5px; cursor:pointer; background:none; border:none; }
+  .nav-toggle span{ width:22px; height:2px; background:var(--paper); }
+
+  header{
+    min-height:100vh;
+    display:flex; flex-direction:column; justify-content:center;
+    padding:0 6vw;
+    position:relative;
+  }
+  .eyebrow{
+    font-size:0.8rem; letter-spacing:2px; color:var(--amber);
+    text-transform:uppercase; margin-bottom:18px; font-family:'JetBrains Mono', monospace;
+  }
+  header h1{
+    font-size:clamp(2.6rem, 7vw, 5.2rem);
+    font-weight:700; line-height:1.02; letter-spacing:-1px;
+    max-width:900px;
+  }
+  header h1 .accent{ color:var(--amber); }
+  .subline{
+    margin-top:24px; font-size:clamp(1rem,2vw,1.25rem);
+    color:#B7BCCB; max-width:560px;
+  }
+  .typed-wrap{
+    margin-top:8px; height:1.6em; font-family:'JetBrains Mono', monospace;
+    font-size:1.05rem; color:var(--indigo);
+  }
+  .cursor{ display:inline-block; width:9px; background:var(--indigo); margin-left:2px;
+    animation:blink 1s steps(1) infinite; }
+  @keyframes blink{ 50%{ opacity:0; } }
+
+  .cta-row{ display:flex; gap:16px; margin-top:40px; flex-wrap:wrap; }
+  .btn{
+    padding:14px 26px; border-radius:6px; font-size:0.92rem; font-weight:600;
+    border:1px solid var(--line); transition:all .2s ease;
+  }
+  .btn-primary{ background:var(--amber); color:var(--ink); border-color:var(--amber); }
+  .btn-primary:hover{ background:#f0b158; transform:translateY(-2px); }
+  .btn-ghost:hover{ border-color:var(--paper); transform:translateY(-2px); }
+
+  .status-bar{
+    margin-top:64px; display:flex; flex-wrap:wrap; gap:28px;
+    padding:18px 22px; background:var(--panel); border:1px solid var(--line);
+    border-radius:8px; max-width:720px;
+  }
+  .status-item{ display:flex; align-items:center; gap:9px; font-family:'JetBrains Mono', monospace; font-size:0.78rem; color:#9CA3B5; }
+  .dot{ width:8px; height:8px; border-radius:50%; background:var(--amber);
+    box-shadow:0 0 0 0 rgba(232,163,61,0.6); animation:pulse 2.4s infinite; }
+  .dot.i2{ background:var(--indigo); box-shadow:0 0 0 0 rgba(91,110,245,0.6); animation-delay:.4s; }
+  .dot.i3{ animation-delay:.8s; }
+  .dot.i4{ background:var(--indigo); box-shadow:0 0 0 0 rgba(91,110,245,0.6); animation-delay:1.2s; }
+  @keyframes pulse{
+    0%{ box-shadow:0 0 0 0 rgba(232,163,61,0.5); }
+    70%{ box-shadow:0 0 0 8px rgba(232,163,61,0); }
+    100%{ box-shadow:0 0 0 0 rgba(232,163,61,0); }
+  }
+
+  section{ padding:120px 6vw; border-top:1px solid var(--line); }
+  .section-head{ margin-bottom:56px; max-width:640px; }
+  .section-tag{ font-family:'JetBrains Mono', monospace; font-size:0.78rem; color:var(--amber); letter-spacing:1.5px; text-transform:uppercase; margin-bottom:14px; }
+  .section-head h2{ font-size:clamp(1.8rem,4vw,2.6rem); font-weight:600; }
+  .section-head p{ margin-top:14px; color:#9CA3B5; font-size:1.02rem; }
+
+  .cap-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px,1fr)); gap:22px; }
+  .cap-card{
+    background:var(--panel); border:1px solid var(--line); border-radius:10px;
+    padding:32px 28px; transition:transform .25s ease, border-color .25s ease;
+  }
+  .cap-card:hover{ transform:translateY(-4px); border-color:var(--amber); }
+  .cap-icon{ font-family:'JetBrains Mono', monospace; font-size:0.75rem; color:var(--indigo); margin-bottom:18px; }
+  .cap-card h3{ font-size:1.2rem; margin-bottom:12px; }
+  .cap-card p{ color:#9CA3B5; font-size:0.95rem; }
+  .cap-tags{ margin-top:18px; display:flex; flex-wrap:wrap; gap:8px; }
+  .tag{ font-family:'JetBrains Mono', monospace; font-size:0.72rem; padding:4px 10px; border:1px solid var(--line); border-radius:20px; color:#9CA3B5; }
+
+  .work-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(320px,1fr)); gap:24px; }
+  .work-card{
+    background:var(--panel-2); border:1px solid var(--line); border-radius:12px; padding:30px;
+    display:flex; flex-direction:column; height:100%;
+  }
+  .work-top{ display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:16px; }
+  .work-index{ font-family:'JetBrains Mono', monospace; font-size:0.75rem; color:var(--slate); }
+  .work-card h3{ font-size:1.25rem; margin-bottom:10px; }
+  .work-card p{ color:#9CA3B5; font-size:0.94rem; flex-grow:1; }
+  .work-tags{ display:flex; flex-wrap:wrap; gap:8px; margin:18px 0; }
+  .work-link{ font-family:'JetBrains Mono', monospace; font-size:0.85rem; color:var(--amber); border-top:1px solid var(--line); padding-top:16px; margin-top:auto; }
+  .work-link:hover{ color:#f0b158; }
+
+  .about-grid{ display:grid; grid-template-columns:1.2fr 1fr; gap:60px; align-items:start; }
+  .about-grid p{ color:#B7BCCB; margin-bottom:18px; font-size:1.02rem; }
+  .fact-list{ background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:28px; }
+  .fact{ display:flex; justify-content:space-between; padding:14px 0; border-bottom:1px solid var(--line); font-size:0.92rem; }
+  .fact:last-child{ border-bottom:none; }
+  .fact-label{ color:var(--slate); font-family:'JetBrains Mono', monospace; font-size:0.78rem; }
+
+  .contact-wrap{ display:flex; flex-direction:column; align-items:flex-start; gap:28px; }
+  .contact-wrap h2{ font-size:clamp(2rem,5vw,3.4rem); max-width:700px; }
+  .contact-links{ display:flex; gap:20px; flex-wrap:wrap; margin-top:12px; }
+  .contact-links a{ font-family:'JetBrains Mono', monospace; font-size:0.9rem; padding:12px 20px; border:1px solid var(--line); border-radius:6px; }
+  .contact-links a:hover{ border-color:var(--amber); color:var(--amber); }
+
+  footer{ padding:32px 6vw; border-top:1px solid var(--line); display:flex; justify-content:space-between; color:var(--slate); font-size:0.82rem; flex-wrap:wrap; gap:10px; }
+
+  @media(max-width:820px){
+    .nav-links{ display:none; }
+    .nav-toggle{ display:flex; }
+    .about-grid{ grid-template-columns:1fr; }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .dot, .cursor{ animation:none; }
+  }
+
+  [data-reveal]{ opacity:0; transform:translateY(18px); transition:opacity .6s ease, transform .6s ease; }
+  [data-reveal].show{ opacity:1; transform:translateY(0); }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">AKOLADE<span>.</span>KAY</div>
+  <div class="nav-links">
+    <a href="#capabilities">Capabilities</a>
+    <a href="#work">Work</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <button class="nav-toggle" aria-label="menu"><span></span><span></span><span></span></button>
+</nav>
+
+<header>
+  <div class="eyebrow">Lagos, Nigeria · Available for freelance</div>
+  <h1>I build the systems<br>and the <span class="accent">signal</span> around them.</h1>
+  <div class="typed-wrap mono"><span id="typed"></span><span class="cursor"></span></div>
+  <p class="subline">Computer Science graduate working across full-stack development, AI-assisted tooling, and digital marketing for founders who need someone who can build the product and get people to notice it.</p>
+
+  <div class="cta-row">
+    <a href="#work" class="btn btn-primary">View my work</a>
+    <a href="#contact" class="btn btn-ghost">Get in touch</a>
+  </div>
+
+  <div class="status-bar mono">
+    <div class="status-item"><span class="dot"></span> DEV — ONLINE</div>
+    <div class="status-item"><span class="dot i2"></span> MARKETING — ONLINE</div>
+    <div class="status-item"><span class="dot i3"></span> AUTOMATION — ONLINE</div>
+    <div class="status-item"><span class="dot i4"></span> SYSTEMS/IT — ONLINE</div>
+  </div>
+</header>
+
+<section id="capabilities">
+  <div class="section-head" data-reveal>
+    <div class="section-tag">// what I do</div>
+    <h2>Four areas, one operator.</h2>
+    <p>I don't sit in a single lane. Most of my client work needs at least two of these working together, that's usually where I add the most value.</p>
+  </div>
+  <div class="cap-grid">
+    <div class="cap-card" data-reveal>
+      <div class="cap-icon mono">[ 01 / BUILD ]</div>
+      <h3>Product & Web Development</h3>
+      <p>Full-stack web apps, booking systems, dashboards, and tools built with React and Flask, deployed and actually working, not just prototypes.</p>
+      <div class="cap-tags"><span class="tag">React</span><span class="tag">Flask</span><span class="tag">Python</span><span class="tag">REST APIs</span></div>
+    </div>
+    <div class="cap-card" data-reveal>
+      <div class="cap-icon mono">[ 02 / AUTOMATE ]</div>
+      <h3>AI & Automation</h3>
+      <p>Chatbots, computer-vision tools, and workflow automation using modern AI APIs built to solve a real, specific business problem.</p>
+      <div class="cap-tags"><span class="tag">Gemini API</span><span class="tag">OpenCV</span><span class="tag">Python</span></div>
+    </div>
+    <div class="cap-card" data-reveal>
+      <div class="cap-icon mono">[ 03 / GROW ]</div>
+      <h3>Digital Marketing & Social</h3>
+      <p>Content strategy, social media management, and ad campaigns for brands that need to look sharp and grow an audience, not just post.</p>
+      <div class="cap-tags"><span class="tag">Meta Ads</span><span class="tag">Canva</span><span class="tag">Content Strategy</span></div>
+    </div>
+    <div class="cap-card" data-reveal>
+      <div class="cap-icon mono">[ 04 / SUPPORT ]</div>
+      <h3>Systems & IT Support</h3>
+      <p>Networking fundamentals and IT support background means I understand the infrastructure underneath the product, not just the surface.</p>
+      <div class="cap-tags"><span class="tag">Cisco IOS</span><span class="tag">TCP/IP</span><span class="tag">Troubleshooting</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="work">
+  <div class="section-head" data-reveal>
+    <div class="section-tag">// selected work</div>
+    <h2>Things I've actually shipped.</h2>
+    <p>A mix of independent builds and client work</p>
+  </div>
+  <div class="work-grid">
+
+    <div class="work-card" data-reveal>
+      <div class="work-top"><span class="work-index mono">/ 01</span></div>
+      <h3>MediBook</h3>
+      <p>A healthcare appointment booking platform built in React, designed for a clean patient-facing scheduling experience.</p>
+      <div class="work-tags"><span class="tag">React</span><span class="tag">Booking System</span></div>
+      <a href="https://emmanuel00001.github.io/MediBook" class="work-link">→ View live project</a>
+    </div>
+
+    <div class="work-card" data-reveal>
+      <div class="work-top"><span class="work-index mono">/ 02</span></div>
+      <h3>AIChatbot</h3>
+      <p>A conversational assistant built with Flask and the Gemini API, deployed and handling real user queries.</p>
+      <div class="work-tags"><span class="tag">Flask</span><span class="tag">Gemini API</span></div>
+      <a href="https://aichatbot-cwhu.onrender.com/" class="work-link">→ View live project</a>
+    </div>
+
+    <div class="work-card" data-reveal>
+      <div class="work-top"><span class="work-index mono">/ 03</span></div>
+      <h3>Face Detection & Attendance System</h3>
+      <p>Computer-vision based attendance tracking using OpenCV — built to remove manual sign-in sheets entirely.</p>
+      <div class="work-tags"><span class="tag">Python</span><span class="tag">OpenCV</span></div>
+      <a href="https://github.com/Emmanuel00001/face-detection-app" class="work-link">→ View code on GitHub</a>
+    </div>
+
+    <div class="work-card" data-reveal>
+      <div class="work-top"><span class="work-index mono">/ 04</span></div>
+      <h3>RemitEase</h3>
+      <p>A money transfer comparison platform helping users find the best rates across providers — in active development.</p>
+      <div class="work-tags"><span class="tag">React</span><span class="tag">Fintech</span></div>
+      <a href="#" class="work-link">→ In development</a>
+    </div>
+
+    <div class="work-card" data-reveal>
+      <div class="work-top"><span class="work-index mono">/ 05</span></div>
+      <h3>Grade Analyser</h3>
+      <p>A tool that processes student grades and generates performance breakdowns automatically removing manual spreadsheet work.</p>
+      <div class="work-tags"><span class="tag">Python</span><span class="tag">Data Analysis</span></div>
+      <a href="https://gradeanalyser.onrender.com/" class="work-link">→ View live project</a>
+    </div>
+
+    <div class="work-card" data-reveal>
+      <div class="work-top"><span class="work-index mono">/ 06</span></div>
+      <h3>Job Application Tracker</h3>
+      <p>A tool for organizing job applications end-to-end status, follow-ups, and deadlines in one place instead of a messy spreadsheet.</p>
+      <div class="work-tags"><span class="tag">Web App</span><span class="tag">Productivity</span></div>
+      <a href="https://github.com/Emmanuel00001/JobTracker" class="work-link">→ View code on GitHub</a>
+    </div>
+
+    <div class="work-card" data-reveal>
+      <div class="work-top"><span class="work-index mono">/ 05</span></div>
+      <h3>"Kay" — Luxury E-commerce</h3>
+      <p>A polished storefront concept built to show what a premium retail brand's web presence can look like.</p>
+      <div class="work-tags"><span class="tag">HTML/CSS/JS</span><span class="tag">E-commerce</span></div>
+      <a href="https://emmanuel00001.github.io/Kay/" class="work-link">→ View live project</a>
+    </div>
+
+    <div class="work-card" data-reveal>
+      <div class="work-top"><span class="work-index mono">/ 06</span></div>
+      <h3>Social Growth — Fashion Retail</h3>
+      <p>Managed content and campaigns for a Lagos-based luxury fashion boutique, handling content calendars, creative, and ad spend.</p>
+      <div class="work-tags"><span class="tag">Meta Ads</span><span class="tag">Content</span></div>
+      <a href="#" class="work-link">→ Case study on request</a>
+    </div>
+
+  </div>
+</section>
+
+<section id="about">
+  <div class="section-head" data-reveal>
+    <div class="section-tag">// about</div>
+    <h2>The short version.</h2>
+  </div>
+  <div class="about-grid">
+    <div data-reveal>
+      <p>I'm a Computer Science graduate based in Lagos, Nigeria, with a background that spans IT support, web development, and digital marketing. That mix isn't an accident. I like understanding a business from the infrastructure up to the audience it's trying to reach.</p>
+      <p>Most of my recent work has been building deployed, working products not tutorials or drafts while also running content and growth for a retail brand. I'm currently expanding into international facing work and further study, and I'm taking on freelance projects in development and digital marketing alongside that.</p>
+      <p>If you need someone who can build the thing and also make sure people find out about it, that's the gap I sit in.</p>
+    </div>
+    <div class="fact-list mono" data-reveal>
+      <div class="fact"><span class="fact-label">EDUCATION</span><span>BSc Computer Science</span></div>
+      <div class="fact"><span class="fact-label">LOCATION</span><span>Lagos, Nigeria</span></div>
+      <div class="fact"><span class="fact-label">FOCUS</span><span>Dev + Marketing + Automation</span></div>
+      <div class="fact"><span class="fact-label">STATUS</span><span>Open to freelance</span></div>
+      <div class="fact"><span class="fact-label">RESPONSE TIME</span><span>Within 24 hours</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="contact-wrap" data-reveal>
+    <div class="section-tag">// let's work together</div>
+    <h2>Got something to build,<br>or grow? Let's talk.</h2>
+    <p style="color:#9CA3B5; max-width:520px;">Whether it's a web app, an automation tool, or a social media presence that needs fixing. Send a message and I'll reply within a day.</p>
+    <div class="contact-links">
+      <a href="mailto:emmanuelakolade2@gmail.com">✉ emmanuelakolade2@gmail.com</a>
+      <a href="https://www.linkedin.com/in/akolade-shorinola/">LinkedIn</a>
+      <a href="https://www.fiverr.com/s/DBD5L5o">Fiverr</a>
+      <a href="https://github.com/Emmanuel00001/">GitHub</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div>© 2026 Akolade Shorinola</div>
+  <div class="mono">BUILT IN LAGOS</div>
+</footer>
+
+<script>
+  const words = ["Full-stack Developer", "Digital Marketer", "AI Automation Builder", "Problem Solver"];
+  let wIndex = 0, cIndex = 0, deleting = false;
+  const el = document.getElementById('typed');
+  function tick(){
+    const word = words[wIndex];
+    if(!deleting){
+      cIndex++;
+      el.textContent = word.slice(0, cIndex);
+      if(cIndex === word.length){ deleting = true; setTimeout(tick, 1400); return; }
+    } else {
+      cIndex--;
+      el.textContent = word.slice(0, cIndex);
+      if(cIndex === 0){ deleting = false; wIndex = (wIndex+1) % words.length; }
+    }
+    setTimeout(tick, deleting ? 40 : 70);
+  }
+  tick();
+
+  const revealEls = document.querySelectorAll('[data-reveal]');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('show'); } });
+  }, { threshold:0.15 });
+  revealEls.forEach(el=>io.observe(el));
+
+  const toggle = document.querySelector('.nav-toggle');
+  const links = document.querySelector('.nav-links');
+  toggle.addEventListener('click', ()=>{
+    links.style.display = links.style.display === 'flex' ? 'none' : 'flex';
+    links.style.position = 'absolute';
+    links.style.top = '64px';
+    links.style.right = '6vw';
+    links.style.background = 'var(--panel)';
+    links.style.flexDirection = 'column';
+    links.style.padding = '20px';
+    links.style.borderRadius = '10px';
+    links.style.border = '1px solid var(--line)';
+  });
+</script>
+
+</body>
+</html>
